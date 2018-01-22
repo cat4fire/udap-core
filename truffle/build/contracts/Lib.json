@@ -1,0 +1,1710 @@
+{
+  "contractName": "Lib",
+  "abi": [],
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a7230582006c47a9f52b98d45057d0d91d5c15bb2cda273c1785c3fac1c04a313b161e55c0029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a7230582006c47a9f52b98d45057d0d91d5c15bb2cda273c1785c3fac1c04a313b161e55c0029",
+  "sourceMap": "52:1183:4:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "52:1183:4:-;;;;;",
+  "source": "pragma solidity ^0.4.18;\n\nimport './SafeMath.sol';\n\nlibrary Lib {\n    using SafeMath for uint256;\n\n    enum Lifecycle{EMPTY,Init,Normal,Locked,Finished,Void,/*add more enum here, */LAST}\n    enum ColumnType{EMPTY,BYTES32,UINT256,ADDRESS,BOOL,/*add more enum here, */LAST}\n\n    function explainColumnType(uint256 _value) internal pure returns (ColumnType) {\n        require(_value < uint256(ColumnType.LAST) );\n        return ColumnType(_value);\n    }\n\n    function interpretColumnType(ColumnType ct) internal pure returns (uint256){\n        return uint256(ct);\n    }\n\n    function validateColumnType(uint256 _value) internal pure returns (bool) {\n        if(_value < uint256(ColumnType.LAST)){\n            return true;\n        }\n        return false;\n    }\n\n\n\n    function explainLifecycle(uint256 _value) internal pure returns (Lifecycle) {\n        require(_value < uint256(Lifecycle.LAST) );\n        return Lifecycle(_value);\n    }\n\n    function interpretLifecycle(Lifecycle l) internal pure returns (uint256){\n        return uint256(l);\n    }\n\n    function validateLifecycle(uint256 _value) internal pure returns (bool) {\n        if(_value < uint256(Lifecycle.LAST)){\n            return true;\n        }\n        return false;\n    }\n}\n\n\n",
+  "sourcePath": "/home/lycrus/IdeaProjects/live2/monolith/src/main/resources/truffle/contracts/Lib.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/home/lycrus/IdeaProjects/live2/monolith/src/main/resources/truffle/contracts/Lib.sol",
+      "exportedSymbols": {
+        "Lib": [
+          4253
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".18"
+          ]
+        },
+        "id": 4127,
+        "name": "PragmaDirective",
+        "src": "0:24:4"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 5234,
+          "absolutePath": "/home/lycrus/IdeaProjects/live2/monolith/src/main/resources/truffle/contracts/SafeMath.sol",
+          "file": "./SafeMath.sol",
+          "scope": 4254,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4128,
+        "name": "ImportDirective",
+        "src": "26:24:4"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "library",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            4253
+          ],
+          "name": "Lib",
+          "scope": 4254
+        },
+        "children": [
+          {
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "SafeMath",
+                  "referencedDeclaration": 5233,
+                  "type": "library SafeMath"
+                },
+                "id": 4129,
+                "name": "UserDefinedTypeName",
+                "src": "76:8:4"
+              },
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 4130,
+                "name": "ElementaryTypeName",
+                "src": "89:7:4"
+              }
+            ],
+            "id": 4131,
+            "name": "UsingForDirective",
+            "src": "70:27:4"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Lib.Lifecycle",
+              "name": "Lifecycle"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "EMPTY"
+                },
+                "id": 4132,
+                "name": "EnumValue",
+                "src": "118:5:4"
+              },
+              {
+                "attributes": {
+                  "name": "Init"
+                },
+                "id": 4133,
+                "name": "EnumValue",
+                "src": "124:4:4"
+              },
+              {
+                "attributes": {
+                  "name": "Normal"
+                },
+                "id": 4134,
+                "name": "EnumValue",
+                "src": "129:6:4"
+              },
+              {
+                "attributes": {
+                  "name": "Locked"
+                },
+                "id": 4135,
+                "name": "EnumValue",
+                "src": "136:6:4"
+              },
+              {
+                "attributes": {
+                  "name": "Finished"
+                },
+                "id": 4136,
+                "name": "EnumValue",
+                "src": "143:8:4"
+              },
+              {
+                "attributes": {
+                  "name": "Void"
+                },
+                "id": 4137,
+                "name": "EnumValue",
+                "src": "152:4:4"
+              },
+              {
+                "attributes": {
+                  "name": "LAST"
+                },
+                "id": 4138,
+                "name": "EnumValue",
+                "src": "181:4:4"
+              }
+            ],
+            "id": 4139,
+            "name": "EnumDefinition",
+            "src": "103:83:4"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Lib.ColumnType",
+              "name": "ColumnType"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "EMPTY"
+                },
+                "id": 4140,
+                "name": "EnumValue",
+                "src": "207:5:4"
+              },
+              {
+                "attributes": {
+                  "name": "BYTES32"
+                },
+                "id": 4141,
+                "name": "EnumValue",
+                "src": "213:7:4"
+              },
+              {
+                "attributes": {
+                  "name": "UINT256"
+                },
+                "id": 4142,
+                "name": "EnumValue",
+                "src": "221:7:4"
+              },
+              {
+                "attributes": {
+                  "name": "ADDRESS"
+                },
+                "id": 4143,
+                "name": "EnumValue",
+                "src": "229:7:4"
+              },
+              {
+                "attributes": {
+                  "name": "BOOL"
+                },
+                "id": 4144,
+                "name": "EnumValue",
+                "src": "237:4:4"
+              },
+              {
+                "attributes": {
+                  "name": "LAST"
+                },
+                "id": 4145,
+                "name": "EnumValue",
+                "src": "266:4:4"
+              }
+            ],
+            "id": 4146,
+            "name": "EnumDefinition",
+            "src": "191:80:4"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "explainColumnType",
+              "payable": false,
+              "scope": 4253,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_value",
+                      "scope": 4167,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4147,
+                        "name": "ElementaryTypeName",
+                        "src": "304:7:4"
+                      }
+                    ],
+                    "id": 4148,
+                    "name": "VariableDeclaration",
+                    "src": "304:14:4"
+                  }
+                ],
+                "id": 4149,
+                "name": "ParameterList",
+                "src": "303:16:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 4167,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum Lib.ColumnType",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "ColumnType",
+                          "referencedDeclaration": 4146,
+                          "type": "enum Lib.ColumnType"
+                        },
+                        "id": 4150,
+                        "name": "UserDefinedTypeName",
+                        "src": "343:10:4"
+                      }
+                    ],
+                    "id": 4151,
+                    "name": "VariableDeclaration",
+                    "src": "343:10:4"
+                  }
+                ],
+                "id": 4152,
+                "name": "ParameterList",
+                "src": "342:12:4"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5426,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 4153,
+                            "name": "Identifier",
+                            "src": "365:7:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "<",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4148,
+                                  "type": "uint256",
+                                  "value": "_value"
+                                },
+                                "id": 4154,
+                                "name": "Identifier",
+                                "src": "373:6:4"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "uint256",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_enum$_ColumnType_$4146",
+                                          "typeString": "enum Lib.ColumnType"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(uint256)",
+                                      "value": "uint256"
+                                    },
+                                    "id": 4155,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "382:7:4"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "member_name": "LAST",
+                                      "referencedDeclaration": null,
+                                      "type": "enum Lib.ColumnType"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4146,
+                                          "type": "type(enum Lib.ColumnType)",
+                                          "value": "ColumnType"
+                                        },
+                                        "id": 4156,
+                                        "name": "Identifier",
+                                        "src": "390:10:4"
+                                      }
+                                    ],
+                                    "id": 4157,
+                                    "name": "MemberAccess",
+                                    "src": "390:15:4"
+                                  }
+                                ],
+                                "id": 4158,
+                                "name": "FunctionCall",
+                                "src": "382:24:4"
+                              }
+                            ],
+                            "id": 4159,
+                            "name": "BinaryOperation",
+                            "src": "373:33:4"
+                          }
+                        ],
+                        "id": 4160,
+                        "name": "FunctionCall",
+                        "src": "365:43:4"
+                      }
+                    ],
+                    "id": 4161,
+                    "name": "ExpressionStatement",
+                    "src": "365:43:4"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4152
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "enum Lib.ColumnType",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4146,
+                              "type": "type(enum Lib.ColumnType)",
+                              "value": "ColumnType"
+                            },
+                            "id": 4162,
+                            "name": "Identifier",
+                            "src": "425:10:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4148,
+                              "type": "uint256",
+                              "value": "_value"
+                            },
+                            "id": 4163,
+                            "name": "Identifier",
+                            "src": "436:6:4"
+                          }
+                        ],
+                        "id": 4164,
+                        "name": "FunctionCall",
+                        "src": "425:18:4"
+                      }
+                    ],
+                    "id": 4165,
+                    "name": "Return",
+                    "src": "418:25:4"
+                  }
+                ],
+                "id": 4166,
+                "name": "Block",
+                "src": "355:95:4"
+              }
+            ],
+            "id": 4167,
+            "name": "FunctionDefinition",
+            "src": "277:173:4"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "interpretColumnType",
+              "payable": false,
+              "scope": 4253,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "ct",
+                      "scope": 4179,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum Lib.ColumnType",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "ColumnType",
+                          "referencedDeclaration": 4146,
+                          "type": "enum Lib.ColumnType"
+                        },
+                        "id": 4168,
+                        "name": "UserDefinedTypeName",
+                        "src": "485:10:4"
+                      }
+                    ],
+                    "id": 4169,
+                    "name": "VariableDeclaration",
+                    "src": "485:13:4"
+                  }
+                ],
+                "id": 4170,
+                "name": "ParameterList",
+                "src": "484:15:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 4179,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4171,
+                        "name": "ElementaryTypeName",
+                        "src": "523:7:4"
+                      }
+                    ],
+                    "id": 4172,
+                    "name": "VariableDeclaration",
+                    "src": "523:7:4"
+                  }
+                ],
+                "id": 4173,
+                "name": "ParameterList",
+                "src": "522:9:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4173
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_enum$_ColumnType_$4146",
+                                  "typeString": "enum Lib.ColumnType"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "type": "type(uint256)",
+                              "value": "uint256"
+                            },
+                            "id": 4174,
+                            "name": "ElementaryTypeNameExpression",
+                            "src": "548:7:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4169,
+                              "type": "enum Lib.ColumnType",
+                              "value": "ct"
+                            },
+                            "id": 4175,
+                            "name": "Identifier",
+                            "src": "556:2:4"
+                          }
+                        ],
+                        "id": 4176,
+                        "name": "FunctionCall",
+                        "src": "548:11:4"
+                      }
+                    ],
+                    "id": 4177,
+                    "name": "Return",
+                    "src": "541:18:4"
+                  }
+                ],
+                "id": 4178,
+                "name": "Block",
+                "src": "531:35:4"
+              }
+            ],
+            "id": 4179,
+            "name": "FunctionDefinition",
+            "src": "456:110:4"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "validateColumnType",
+              "payable": false,
+              "scope": 4253,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_value",
+                      "scope": 4199,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4180,
+                        "name": "ElementaryTypeName",
+                        "src": "600:7:4"
+                      }
+                    ],
+                    "id": 4181,
+                    "name": "VariableDeclaration",
+                    "src": "600:14:4"
+                  }
+                ],
+                "id": 4182,
+                "name": "ParameterList",
+                "src": "599:16:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 4199,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 4183,
+                        "name": "ElementaryTypeName",
+                        "src": "639:4:4"
+                      }
+                    ],
+                    "id": 4184,
+                    "name": "VariableDeclaration",
+                    "src": "639:4:4"
+                  }
+                ],
+                "id": 4185,
+                "name": "ParameterList",
+                "src": "638:6:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "<",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4181,
+                              "type": "uint256",
+                              "value": "_value"
+                            },
+                            "id": 4186,
+                            "name": "Identifier",
+                            "src": "658:6:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_enum$_ColumnType_$4146",
+                                      "typeString": "enum Lib.ColumnType"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(uint256)",
+                                  "value": "uint256"
+                                },
+                                "id": 4187,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "667:7:4"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "LAST",
+                                  "referencedDeclaration": null,
+                                  "type": "enum Lib.ColumnType"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4146,
+                                      "type": "type(enum Lib.ColumnType)",
+                                      "value": "ColumnType"
+                                    },
+                                    "id": 4188,
+                                    "name": "Identifier",
+                                    "src": "675:10:4"
+                                  }
+                                ],
+                                "id": 4189,
+                                "name": "MemberAccess",
+                                "src": "675:15:4"
+                              }
+                            ],
+                            "id": 4190,
+                            "name": "FunctionCall",
+                            "src": "667:24:4"
+                          }
+                        ],
+                        "id": 4191,
+                        "name": "BinaryOperation",
+                        "src": "658:33:4"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 4185
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "74727565",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "true"
+                                },
+                                "id": 4192,
+                                "name": "Literal",
+                                "src": "713:4:4"
+                              }
+                            ],
+                            "id": 4193,
+                            "name": "Return",
+                            "src": "706:11:4"
+                          }
+                        ],
+                        "id": 4194,
+                        "name": "Block",
+                        "src": "692:36:4"
+                      }
+                    ],
+                    "id": 4195,
+                    "name": "IfStatement",
+                    "src": "655:73:4"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4185
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "66616c7365",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "false"
+                        },
+                        "id": 4196,
+                        "name": "Literal",
+                        "src": "744:5:4"
+                      }
+                    ],
+                    "id": 4197,
+                    "name": "Return",
+                    "src": "737:12:4"
+                  }
+                ],
+                "id": 4198,
+                "name": "Block",
+                "src": "645:111:4"
+              }
+            ],
+            "id": 4199,
+            "name": "FunctionDefinition",
+            "src": "572:184:4"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "explainLifecycle",
+              "payable": false,
+              "scope": 4253,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_value",
+                      "scope": 4220,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4200,
+                        "name": "ElementaryTypeName",
+                        "src": "790:7:4"
+                      }
+                    ],
+                    "id": 4201,
+                    "name": "VariableDeclaration",
+                    "src": "790:14:4"
+                  }
+                ],
+                "id": 4202,
+                "name": "ParameterList",
+                "src": "789:16:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 4220,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum Lib.Lifecycle",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Lifecycle",
+                          "referencedDeclaration": 4139,
+                          "type": "enum Lib.Lifecycle"
+                        },
+                        "id": 4203,
+                        "name": "UserDefinedTypeName",
+                        "src": "829:9:4"
+                      }
+                    ],
+                    "id": 4204,
+                    "name": "VariableDeclaration",
+                    "src": "829:9:4"
+                  }
+                ],
+                "id": 4205,
+                "name": "ParameterList",
+                "src": "828:11:4"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5426,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 4206,
+                            "name": "Identifier",
+                            "src": "850:7:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "<",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4201,
+                                  "type": "uint256",
+                                  "value": "_value"
+                                },
+                                "id": 4207,
+                                "name": "Identifier",
+                                "src": "858:6:4"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "uint256",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_enum$_Lifecycle_$4139",
+                                          "typeString": "enum Lib.Lifecycle"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(uint256)",
+                                      "value": "uint256"
+                                    },
+                                    "id": 4208,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "867:7:4"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "member_name": "LAST",
+                                      "referencedDeclaration": null,
+                                      "type": "enum Lib.Lifecycle"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4139,
+                                          "type": "type(enum Lib.Lifecycle)",
+                                          "value": "Lifecycle"
+                                        },
+                                        "id": 4209,
+                                        "name": "Identifier",
+                                        "src": "875:9:4"
+                                      }
+                                    ],
+                                    "id": 4210,
+                                    "name": "MemberAccess",
+                                    "src": "875:14:4"
+                                  }
+                                ],
+                                "id": 4211,
+                                "name": "FunctionCall",
+                                "src": "867:23:4"
+                              }
+                            ],
+                            "id": 4212,
+                            "name": "BinaryOperation",
+                            "src": "858:32:4"
+                          }
+                        ],
+                        "id": 4213,
+                        "name": "FunctionCall",
+                        "src": "850:42:4"
+                      }
+                    ],
+                    "id": 4214,
+                    "name": "ExpressionStatement",
+                    "src": "850:42:4"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4205
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "enum Lib.Lifecycle",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4139,
+                              "type": "type(enum Lib.Lifecycle)",
+                              "value": "Lifecycle"
+                            },
+                            "id": 4215,
+                            "name": "Identifier",
+                            "src": "909:9:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4201,
+                              "type": "uint256",
+                              "value": "_value"
+                            },
+                            "id": 4216,
+                            "name": "Identifier",
+                            "src": "919:6:4"
+                          }
+                        ],
+                        "id": 4217,
+                        "name": "FunctionCall",
+                        "src": "909:17:4"
+                      }
+                    ],
+                    "id": 4218,
+                    "name": "Return",
+                    "src": "902:24:4"
+                  }
+                ],
+                "id": 4219,
+                "name": "Block",
+                "src": "840:93:4"
+              }
+            ],
+            "id": 4220,
+            "name": "FunctionDefinition",
+            "src": "764:169:4"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "interpretLifecycle",
+              "payable": false,
+              "scope": 4253,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "l",
+                      "scope": 4232,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum Lib.Lifecycle",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Lifecycle",
+                          "referencedDeclaration": 4139,
+                          "type": "enum Lib.Lifecycle"
+                        },
+                        "id": 4221,
+                        "name": "UserDefinedTypeName",
+                        "src": "967:9:4"
+                      }
+                    ],
+                    "id": 4222,
+                    "name": "VariableDeclaration",
+                    "src": "967:11:4"
+                  }
+                ],
+                "id": 4223,
+                "name": "ParameterList",
+                "src": "966:13:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 4232,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4224,
+                        "name": "ElementaryTypeName",
+                        "src": "1003:7:4"
+                      }
+                    ],
+                    "id": 4225,
+                    "name": "VariableDeclaration",
+                    "src": "1003:7:4"
+                  }
+                ],
+                "id": 4226,
+                "name": "ParameterList",
+                "src": "1002:9:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4226
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_enum$_Lifecycle_$4139",
+                                  "typeString": "enum Lib.Lifecycle"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "type": "type(uint256)",
+                              "value": "uint256"
+                            },
+                            "id": 4227,
+                            "name": "ElementaryTypeNameExpression",
+                            "src": "1028:7:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4222,
+                              "type": "enum Lib.Lifecycle",
+                              "value": "l"
+                            },
+                            "id": 4228,
+                            "name": "Identifier",
+                            "src": "1036:1:4"
+                          }
+                        ],
+                        "id": 4229,
+                        "name": "FunctionCall",
+                        "src": "1028:10:4"
+                      }
+                    ],
+                    "id": 4230,
+                    "name": "Return",
+                    "src": "1021:17:4"
+                  }
+                ],
+                "id": 4231,
+                "name": "Block",
+                "src": "1011:34:4"
+              }
+            ],
+            "id": 4232,
+            "name": "FunctionDefinition",
+            "src": "939:106:4"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "validateLifecycle",
+              "payable": false,
+              "scope": 4253,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_value",
+                      "scope": 4252,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4233,
+                        "name": "ElementaryTypeName",
+                        "src": "1078:7:4"
+                      }
+                    ],
+                    "id": 4234,
+                    "name": "VariableDeclaration",
+                    "src": "1078:14:4"
+                  }
+                ],
+                "id": 4235,
+                "name": "ParameterList",
+                "src": "1077:16:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 4252,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 4236,
+                        "name": "ElementaryTypeName",
+                        "src": "1117:4:4"
+                      }
+                    ],
+                    "id": 4237,
+                    "name": "VariableDeclaration",
+                    "src": "1117:4:4"
+                  }
+                ],
+                "id": 4238,
+                "name": "ParameterList",
+                "src": "1116:6:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "<",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4234,
+                              "type": "uint256",
+                              "value": "_value"
+                            },
+                            "id": 4239,
+                            "name": "Identifier",
+                            "src": "1136:6:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_enum$_Lifecycle_$4139",
+                                      "typeString": "enum Lib.Lifecycle"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(uint256)",
+                                  "value": "uint256"
+                                },
+                                "id": 4240,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "1145:7:4"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "LAST",
+                                  "referencedDeclaration": null,
+                                  "type": "enum Lib.Lifecycle"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4139,
+                                      "type": "type(enum Lib.Lifecycle)",
+                                      "value": "Lifecycle"
+                                    },
+                                    "id": 4241,
+                                    "name": "Identifier",
+                                    "src": "1153:9:4"
+                                  }
+                                ],
+                                "id": 4242,
+                                "name": "MemberAccess",
+                                "src": "1153:14:4"
+                              }
+                            ],
+                            "id": 4243,
+                            "name": "FunctionCall",
+                            "src": "1145:23:4"
+                          }
+                        ],
+                        "id": 4244,
+                        "name": "BinaryOperation",
+                        "src": "1136:32:4"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 4238
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "74727565",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "true"
+                                },
+                                "id": 4245,
+                                "name": "Literal",
+                                "src": "1190:4:4"
+                              }
+                            ],
+                            "id": 4246,
+                            "name": "Return",
+                            "src": "1183:11:4"
+                          }
+                        ],
+                        "id": 4247,
+                        "name": "Block",
+                        "src": "1169:36:4"
+                      }
+                    ],
+                    "id": 4248,
+                    "name": "IfStatement",
+                    "src": "1133:72:4"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 4238
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "66616c7365",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "false"
+                        },
+                        "id": 4249,
+                        "name": "Literal",
+                        "src": "1221:5:4"
+                      }
+                    ],
+                    "id": 4250,
+                    "name": "Return",
+                    "src": "1214:12:4"
+                  }
+                ],
+                "id": 4251,
+                "name": "Block",
+                "src": "1123:110:4"
+              }
+            ],
+            "id": 4252,
+            "name": "FunctionDefinition",
+            "src": "1051:182:4"
+          }
+        ],
+        "id": 4253,
+        "name": "ContractDefinition",
+        "src": "52:1183:4"
+      }
+    ],
+    "id": 4254,
+    "name": "SourceUnit",
+    "src": "0:1238:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-12-07T09:28:47.416Z"
+}

@@ -1,0 +1,37 @@
+Available Accounts
+==================
+(0) 0x0768f3889877330f5171c062ca13b1acd09ebfa3
+(1) 0xefa4a761228d781264bf228a15195c532832e4fa
+(2) 0x253013df5aab0d74382490ee4b23235d9276be6f
+(3) 0xb01952d73db95473b3c030321e26059722c02580
+(4) 0x97c56979b5f807b7a1c76065be950139ee78eaf7
+(5) 0x7ba6186b0387bf58d6c2bf549e7fe90b05d66755
+(6) 0x54b7e62590d66afa8ef3bfbf61239287e787c53f
+(7) 0x313ec12bc9bceb528ff50d6c004b7c6116df3ab6
+(8) 0x078a5335595ffe9bc91217ba3a95397100adad99
+(9) 0x16bd98edbb26b6ac07a9641d0810ffb7684e2cf0
+
+Private Keys
+==================
+(0) bf0be042d723f26a15e5a787b55e27df721b38a59e1c6bdde6e8d5cdc29d37b0
+(1) 01d27648de85a94171d55b19da5b202f7f1b13d5317c86dee76e2fc4710d60e1
+(2) 7116742c40cdbc834a74edee9d15797956a31235eb078cbea44605c6153d8f7a
+(3) 65ebc75042b173e4bf12d7ced12f24dd7ee59d687a0b4c9a2b42ea5f868d454d
+(4) ea1a5db18d4bd715f960c58401e46f0442887793ae0765a1e82778064fcea455
+(5) d46151f97e11c403c05df38c695f7c0e9de1e8744a9db4c0203101f1d6cccd46
+(6) 637cf778e56a4b9473990814a1e958cc6a9279f6f5f4b1b4f5c93dd302bef183
+(7) 744ec177c3882dfb5706d5a03ad27b5fa44b587ef6aa59b997a667c279609bfe
+(8) 91f3faed00c6e9debc731be5c706e4115608861af7595280dc8ef20cb500b61d
+(9) 79972a6328ab7fd6bc90cae4b72fa41e9ad6ee376f39c0ebd5c4926157f1e97f
+
+HD Wallet
+==================
+Mnemonic:      stand pill moral seat eyebrow window fatigue use surge program taste panda
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+
+testrpc -m "stand pill moral seat eyebrow window fatigue use surge program taste panda" -i 1234 -g 0 -l 0xffffffffff
+
+geth --datadir ./datadir --networkid 711 --rpc --rpcapi "admin,clique,db,debug,eth,miner,net,personal,rpc,settings,shh,txpool,web3" console --unlock 0x0768f3889877330f5171c062ca13b1acd09ebfa3,0xefa4a761228d781264bf228a15195c532832e4fa,0x253013df5aab0d74382490ee4b23235d9276be6f --password ./password --targetgaslimit "2000" --gasprice "1" --gpoblocks 1 --gpopercentile 100
+
+geth attach http://localhost:8545

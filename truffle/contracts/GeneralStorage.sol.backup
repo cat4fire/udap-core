@@ -1,0 +1,268 @@
+pragma solidity ^0.4.0;
+
+//import "file://..//node_modules//zeppelin-solidity//contracts//token/ERC20.sol";
+
+contract GeneralStorage {
+    function GeneralStorage() public payable {
+
+    }
+
+    function() payable public {
+
+    }
+
+    mapping(bytes32 => uint64[]) UInt64Storage;
+    mapping(bytes32 => mapping(uint64 => uint256)) UInt64Accelerator;
+
+    function getUInt64Value(bytes32 schema, uint256 index) constant public
+    returns (uint64)
+    {
+        return UInt64Storage[schema][index];
+    }
+
+    function setUInt64Value(bytes32 schema, uint256 index, uint64 value) public
+    {
+        UInt64Storage[schema][index] = value;
+        UInt64Accelerator[schema][value]=index;
+    }
+
+    function addUInt64Value(bytes32 schema, uint64 value) public
+    returns (uint256)
+    {
+        UInt64Storage[schema].push(value);
+        UInt64Accelerator[schema][value] = UInt64Storage[schema].length;
+        return UInt64Storage[schema].length;
+    }
+
+    function getUInt64length(bytes32 schema) constant public
+    returns (uint256)
+    {
+        return UInt64Storage[schema].length;
+    }
+
+    function clrUInt64(bytes32 schema) public
+    {
+        delete UInt64Storage[schema];
+    }
+
+    //only when this value of address type is unique key, this would be safe
+    function ctnUInt64Value(bytes32 schema, uint64 value) constant public
+    returns (uint8 ret)
+    {
+        if(sha3(UInt64Storage[schema][UInt64Accelerator[schema][value]]) == sha3(value)){
+            return 1;
+        }
+        return 0;
+    }
+
+    function getUInt64Index(bytes32 schema, uint64 value) constant public
+    returns (uint256)
+    {
+        return UInt64Accelerator[schema][value];
+    }
+/*
+    //===================
+    mapping(bytes32 => address[]) AddressStorage;
+    mapping(bytes32 => mapping(address => uint256)) AddressAccelerator;
+
+    function getAddressValue(bytes32 schema, uint256 index) constant public
+    returns (address)
+    {
+        return AddressStorage[schema][index];
+    }
+
+    function setAddressValue(bytes32 schema, uint256 index, address value) public
+    {
+        AddressStorage[schema][index] = value;
+        AddressAccelerator[schema][value] = index;
+    }
+
+    function addAddressValue(bytes32 schema, address value) public
+    returns (uint256)
+    {
+        AddressStorage[schema].push(value);
+        AddressAccelerator[schema][value] = AddressStorage[schema].length;
+        return AddressStorage[schema].length;
+    }
+
+    function getAddresslength(bytes32 schema) constant public
+    returns (uint256)
+    {
+        return AddressStorage[schema].length;
+    }
+
+    function clrAddress(bytes32 schema) public
+    {
+        delete AddressStorage[schema];
+    }
+    //only when this value of address type is unique key, this would be safe
+    function ctnAddressValue(bytes32 schema, address value) constant public
+    returns (bool)
+    {
+        if(sha3(AddressStorage[schema][AddressAccelerator[schema][value]]) == sha3(value)){
+            return true;
+        }
+        return false;
+    }
+
+    function getAddressIndex(bytes32 schema, address value) constant public
+    returns (uint256)
+    {
+        return AddressAccelerator[schema][value];
+    }
+
+
+
+
+    mapping(bytes32 => bytes32[]) Bytes32Storage;
+    mapping(bytes32 => mapping(bytes32 => uint256)) Bytes32Accelerator;
+
+    function getBytes32Value(bytes32 schema, uint256 index) constant public
+    returns (bytes32)
+    {
+        return Bytes32Storage[schema][index];
+    }
+
+    function setBytes32Value(bytes32 schema, uint256 index, bytes32 value) public
+    {
+        Bytes32Storage[schema][index] = value;
+        Bytes32Accelerator[schema][value] = index;
+    }
+
+    function addBytes32Value(bytes32 schema, bytes32 value) public
+    returns (uint256)
+    {
+        Bytes32Storage[schema].push(value);
+        Bytes32Accelerator[schema][value] = Bytes32Storage[schema].length;
+        return Bytes32Storage[schema].length;
+    }
+
+    function getBytes32length(bytes32 schema) constant public
+    returns (uint256)
+    {
+        return Bytes32Storage[schema].length;
+    }
+
+    function clrBytes32(bytes32 schema) public
+    {
+        delete Bytes32Storage[schema];
+    }
+    //only when this value of address type is unique key, this would be safe
+    function ctnBytes32Value(bytes32 schema, bytes32 value) constant public
+    returns (bool)
+    {
+        if(sha3(Bytes32Storage[schema][Bytes32Accelerator[schema][value]]) == sha3(value)){
+            return true;
+        }
+        return false;
+    }
+
+    function getBytes32Index(bytes32 schema, bytes32 value) constant public
+    returns (uint256)
+    {
+        return Bytes32Accelerator[schema][value];
+    }
+
+
+
+
+
+    mapping(bytes32 => bool[]) BooleanStorage;
+    mapping(bytes32 => mapping(bool => uint256)) BooleanAccelerator;
+
+    function getBooleanValue(bytes32 schema, uint256 index) constant public
+    returns (bool){
+        return BooleanStorage[schema][index];
+    }
+
+    function setBooleanValue(bytes32 schema, uint256 index, bool value) public
+    {
+        BooleanStorage[schema][index] = value;
+        BooleanAccelerator[schema][value] = index;
+    }
+
+    function addBooleanValue(bytes32 schema, bool value) public
+    returns (uint256)
+    {
+        BooleanStorage[schema].push(value);
+        BooleanAccelerator[schema][value] = BooleanStorage[schema].length;
+        return BooleanStorage[schema].length;
+    }
+
+    function getBooleanlength(bytes32 schema) constant public
+    returns (uint256)
+    {
+        return BooleanStorage[schema].length;
+    }
+
+    function clrBoolean(bytes32 schema) public
+    {
+        delete BooleanStorage[schema];
+    }
+
+    //only when this value of address type is unique key, this would be safe
+    function ctnBooleanValue(bytes32 schema, bool value) constant public
+    returns (bool)
+    {
+        if(sha3(BooleanStorage[schema][BooleanAccelerator[schema][value]]) == sha3(value)){
+            return true;
+        }
+        return false;
+    }
+
+    function getBooleanIndex(bytes32 schema, bool value) constant public
+    returns (uint256)
+    {
+        return BooleanAccelerator[schema][value];
+    }
+
+
+
+
+    mapping(bytes32 => int64[]) Int64Storage;
+    mapping(bytes32 => mapping(int64 => uint256)) Int64Accelerator;
+
+    function getInt64Value(bytes32 schema, uint256 index) constant public
+    returns (int64){
+        return Int64Storage[schema][index];
+    }
+
+    function setInt64Value(bytes32 schema, uint256 index, int64 value) public
+    {
+        Int64Storage[schema][index] = value;
+        Int64Accelerator[schema][value] = index;
+    }
+
+    function addInt64Value(bytes32 schema, int64 value) public
+    returns (uint256)
+    {
+        Int64Storage[schema].push(value);
+        Int64Accelerator[schema][value] = Int64Storage[schema].length;
+        return Int64Storage[schema].length;
+    }
+
+    function getInt64length(bytes32 schema) constant public
+    returns (uint256)
+    {
+        return Int64Storage[schema].length;
+    }
+
+    function clrInt64(bytes32 schema) public
+    {
+        delete Int64Storage[schema];
+    }
+    //only when this value of address type is unique key, this would be safe
+    function ctnInt64Value(bytes32 schema, int64 value) constant public
+    returns (bool)
+    {
+        if(sha3(Int64Storage[schema][Int64Accelerator[schema][value]]) == sha3(value)){
+            return true;
+        }
+        return false;
+    }
+
+    function getInt64Index(bytes32 schema, int64 value) constant public
+    returns (uint256){
+        return Int64Accelerator[schema][value];
+    }*/
+}
