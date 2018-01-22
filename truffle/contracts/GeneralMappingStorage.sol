@@ -27,7 +27,7 @@ contract GeneralMappingStorage{
         return true;
     }
     function setBytes32ToAddress(bytes32 _schema, bytes32 _bytes32, address _address) public returns (bool){
-        //    require(bytes32ToAddress[_schema][_bytes32]!=address(0));
+    //    require(bytes32ToAddress[_schema][_bytes32]!=address(0));
         bytes32ToAddress[_schema][_bytes32] = _address;
         return true;
     }
@@ -58,7 +58,7 @@ contract GeneralMappingStorage{
     }
 
     function setAddressToUint(bytes32 _schema, address _address, uint256 _uint) public returns (bool){
-        //    require(addressToUint[_schema][_address]!=uint256(0));
+    //    require(addressToUint[_schema][_address]!=uint256(0));
         addressToUint[_schema][_address] = _uint;
         return true;
     }
@@ -90,7 +90,7 @@ contract GeneralMappingStorage{
     }
 
     function setBytes32ToUint(bytes32 _schema, bytes32 _bytes32, uint256 _uint) public returns (bool){
-        //    require(bytes32ToUint[_schema][_address]!=uint256(0));
+    //    require(bytes32ToUint[_schema][_address]!=uint256(0));
         bytes32ToUint[_schema][_bytes32] = _uint;
         return true;
     }
